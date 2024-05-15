@@ -3,8 +3,10 @@ train: ../train/images
 # val: ../valid/images
 test: ../test/images
 
-nkpt_shape: [8, 3]
+kpt_shape: [8, 3]
 flip_idx: [0, 1, 2, 3, 4, 5, 6, 7]
+
+nkpt: 8
 
 nc: 86
 names: ['99 APPLE 50ml', '99-APPLE-100ML', '99-BANANAS-100ML', '99-BANANAS-50ML', '99-PEACH-50ML', '99-PEACHES-100ML', 'BIRD-DOG-APPLE-750ML', 'BIRD-DOG-BLACKCHERRY-750ML', 'BIRD-DOG-SALTED-CARAMEL-WHISKEY-750ML', 'BIRD-DOG-STRAWBERRY-750ML', 'Barg-sBlack-20Oz', 'Bueno-shareSize', 'Cheetos-Crunchy', 'Cheetos-Crunchy-Flamin-Hot', 'Cheetos-Puffs', 'Cheetos-crunchy-Flamin-Hot-Limon', 'Cheetos-crunchy-XXTRA-Flamin-Hot', 'Cherry-Coca-cola 20Oz', 'CherryVanilla-Coca-cola 20Oz', 'Chips-Ahoy', 'Chips-Ahoy-KingSize', 'Coca-cola 20Oz', 'CocaCola-16Oz', 'Crunch', 'Crush-16Oz', 'DEKUYPER-BUTTERSHOTS-200ML', 'DEKUYPER-BUTTERSHOTS-750ML', 'DEKUYPER-HOT-DAMN-100PR-200ML', 'DEKUYPER-HOT-DAMN-30PR-200ML', 'DEKUYPER-HOT-DAMN-30PR-750ML', 'DEKUYPER-PEACHTREE-200ML', 'DEKUYPER-PEACHTREE-750ML', 'DEKUYPER-PEPPERMINT-100PR-750ML', 'DORITOS-Cool-Ranch', 'DORITOS-Nacho-Cheese', 'DORITOS-Spicy-Nacho', 'DietCoca-cola 20Oz', 'Dr-Papper-1L', 'Dr-Papper-Can16oz', 'EARLYTIMES-200ML', 'Fanta-Can16oz', 'Fanta-Grape-20Oz', 'Fanta20Oz', 'FantaZero20Oz', 'Funyuns-Onion-flavored-rings-Flamin-hot', 'JIM-BEAM-APPLE-750ML', 'JIM-BEAM-BURBON-200ML', 'JIM-BEAM-FIRE-750ML', 'JIM-BEAM-FIRE-750ML-PET', 'JIM-BEAM-HONEY-200ML', 'JIM-BEAM-HONEY-750ML-PET', 'JIM-BEAM-RED-STAG-200ML', 'JIM-BEAM-RED-STAG-750ML', 'Lay-s-Barbecue', 'Lay-s-Classic', 'Lay-s-Limon', 'Lenny-Larry-s-BirthdayCake', 'Lenny-Larry-s-ChocolateChips', 'Lenny-Larry-s-DoubleChocolateChips', 'Lenny-Larry-s-PeanutButter', 'Lenny-Larry-s-PeanutButter-ChocolateChips', 'Lenny-Larry-s-Snickerdoodle', 'MinuteMaid-FruitPunch', 'MinuteMaid-PinkLemonade', 'MinuteMaidBlueRaspberry-20Oz', 'MinuteMaidLemonade-20Oz', 'MtnDew-16Oz', 'Nerds-shareSize', 'Oreo', 'Oreo-DoubleStuf-KingSize', 'Oreo-KingSize', 'PayDay-shareSize', 'Skittles-shareSize', 'SourPunch-shareSize', 'Spiced-Coca-cola 20Oz', 'Sprite-Can16oz', 'Sprite-Cherry-20Oz', 'Sprite-TropicalMix-20Oz', 'Sprite-Zero-20Oz', 'Sprite20Oz', 'Sprite40Oz', 'Vanilla-Coca-cola 20Oz', 'Whatchamacallit-kingSize', 'dietCoke-Can16oz', 'skittles-smoothies-shareSize', 'zeroCocaCola-16Oz']
