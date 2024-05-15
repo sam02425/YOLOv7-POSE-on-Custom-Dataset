@@ -1,6 +1,6 @@
 
 train: ../train/images
-val: ../valid/images
+# val: ../valid/images
 test: ../test/images
 
 kpt_shape: [8, 3]
