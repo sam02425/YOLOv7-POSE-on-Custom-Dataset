@@ -1,6 +1,6 @@
-# YOLOv7-Pose-on-Custom-Dataset:
+# YOLOv7-Pose-on-Custom-Dataset for Grocery Products:
 
-## Keypoint detection on custom dataset. We have 1 class - Glass and it have 4 keypoints. In this this tutorial we will train our yolov7 model to detect these 4 custom keypoints
+## Keypoint detection on a custom dataset of grocery products with 8 keypoints. In this tutorial, we will train our YOLOv7 model to detect these 8 custom keypoints on grocery products.
 
 ![image](https://user-images.githubusercontent.com/60029146/235298070-9b18bd05-64f6-4957-8c2b-f8e6faeacd13.png)
 
@@ -34,7 +34,7 @@ Now,Installing coco-annotator using docker:
 
 ### Now, Dataset is ready. Clone this github repo: 
 
-        git clone https://github.com/AarohiSingla/YOLOv7-POSE-on-Custom-Dataset
+        git clone [https://github.com/sam02425/YOLOv7-POSE-on-Custom-Dataset]
 
         cd YOLOv7-POSE-on-Custom-Dataset
 
@@ -46,7 +46,7 @@ Now,Installing coco-annotator using docker:
         
 For Training: 
 
-      !python train.py --data data/custom_kpts.yaml --cfg cfg/yolov7-w6-pose_custom.yaml --hyp data/hyp.pose.yaml --device 0 --kpt-label --epochs 600
+      !python train.py --data data/custom_kpts.yaml --cfg cfg/yolov7-w6-pose_custom.yaml --hyp data/hyp.pose.yaml --device 0 --kpt-label --epochs 60
             
 For Keypoint Detection: 
 
@@ -57,5 +57,5 @@ For Keypoint Detection:
 Reference: 
 
         https://github.com/WongKinYiu/yolov7/tree/pose
-
-        https://github.com/ruiz-manuel/yolov7-pose-custom               
+        https://github.com/ruiz-manuel/yolov7-pose-custom   
+        https://github.com/AarohiSingla/YOLOv7-POSE-on-Custom-Dataset
