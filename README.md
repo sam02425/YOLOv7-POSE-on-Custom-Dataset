@@ -34,7 +34,7 @@ Now,Installing coco-annotator using docker:
 
 ### Now, Dataset is ready. Clone this github repo: 
 
-        git clone [https://github.com/sam02425/YOLOv7-POSE-on-Custom-Dataset]
+        git clone https://github.com/sam02425/YOLOv7-POSE-on-Custom-Dataset
 
         cd YOLOv7-POSE-on-Custom-Dataset
 
