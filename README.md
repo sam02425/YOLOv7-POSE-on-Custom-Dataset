@@ -2,11 +2,11 @@
 
 ## Keypoint detection on a custom dataset of grocery products with 8 keypoints. In this tutorial, we will train our YOLOv7 model to detect these 8 custom keypoints on grocery products.
 
-![image](https://user-images.githubusercontent.com/60029146/235298070-9b18bd05-64f6-4957-8c2b-f8e6faeacd13.png)
+Roboflow: data set:
+https://app.roboflow.com/lamar-university-venef/retail-products-vem9o/2
 
-![image](https://user-images.githubusercontent.com/60029146/235298504-be7c9cdb-4368-4d13-b87d-c5d066bd08ab.png)
-
-
+<img width="190" alt="Screenshot 2024-05-22 at 2 43 40 PM" src="https://github.com/sam02425/YOLOv7-POSE-on-Custom-Dataset/assets/31678223/f5cdcf41-942f-4171-8bba-ae7e03f66bfe">
+<img width="358" alt="Screenshot 2024-05-22 at 2 44 38 PM" src="https://github.com/sam02425/YOLOv7-POSE-on-Custom-Dataset/assets/31678223/1d0d4c3c-1c91-40aa-876b-b7fa8d16403a">
 
 
 
