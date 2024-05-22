@@ -50,7 +50,7 @@ For Training:
             
 For Keypoint Detection: 
 
-     !python detect.py --weights runs/train/exp3/weights/best.pt --kpt-label --source 1.jpg --conf 0.030 --iou 0.30
+     python detect.py --weights runs/train/exp3/weights/best.pt --kpt-label --source 1.jpg --conf 0.030 --iou 0.30
 
 
 
