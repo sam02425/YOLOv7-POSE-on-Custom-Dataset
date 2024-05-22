@@ -26,7 +26,7 @@ class Detect(nn.Module):
     stride = None  # strides computed during build
     export = False  # onnx export
 
-    def __init__(self, nc=80, anchors=(), nkpt=None, ch=(), inplace=True, dw_conv_kpt=False):  # detection layer
+    def __init__(self, nc=86, anchors=(), nkpt=None, ch=(), inplace=True, dw_conv_kpt=False):  # detection layer
         super(Detect, self).__init__()
         self.nc = nc  # number of classes
         self.nkpt = nkpt
@@ -115,7 +115,7 @@ class IDetect(nn.Module):
     stride = None  # strides computed during build
     export = False  # onnx export
 
-    def __init__(self, nc=80, anchors=(), nkpt=None, ch=(), inplace=True, dw_conv_kpt=False):  # detection layer
+    def __init__(self, nc=86, anchors=(), nkpt=8, ch=(), inplace=True, dw_conv_kpt=False):  # detection layer
         super(IDetect, self).__init__()
         self.nc = nc  # number of classes
         self.nkpt = nkpt
