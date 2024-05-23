@@ -85,49 +85,100 @@ def plot_one_box(x, im, color=None, label=None, line_thickness=3, kpt_label=Fals
 
 
 def plot_skeleton_kpts(im, kpts, steps, orig_shape=None):
-    #Plot the skeleton and keypointsfor coco datatset
-    palette = np.array([[255, 128, 0], [255, 153, 255], [102, 205, 102], [0, 0, 255]])
-
-    # skeleton = [[16, 14], [14, 12], [17, 15], [15, 13], [12, 13], [6, 12],
-    #             [7, 13], [6, 7], [6, 8], [7, 9], [8, 10], [9, 11], [2, 3],
-    #             [1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 7]]
-
-    skeleton = [[1, 2], [2, 3], [3, 4]]
-    
-    #pose_limb_color = palette[[9, 9, 9, 9, 7, 7, 7, 0, 0, 0, 0, 0, 16, 16, 16, 16, 16, 16, 16]]
-    pose_limb_color = palette[[limb[0]-1 for limb in skeleton]]
-    #pose_kpt_color = palette[[16, 16, 16, 16, 16, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9]]
-    #pose_kpt_color = palette[[16, 0, 9, 1]]
-    radius = 4
-    min_conf = 0.2
     num_kpts = len(kpts) // steps
-    pose_kpt_color = palette[list(range(num_kpts))]
+    kpt_names = ['top', 'left_upper', 'right_upper', 'left_middle', 'right_middle', 'left_lower', 'right_lower', 'bottom']
+    palette = np.array([[255, 128, 0], [255, 153, 51], [255, 178, 102], [230, 230, 0], [255, 153, 255], [153, 204, 255], [255, 102, 255], [255, 51, 255], [102, 178, 255], [51, 153, 255], [255, 153, 153], [255, 102, 102], [255, 51, 51], [153, 255, 153], [102, 255, 102], [51, 255, 51], [0, 255, 0], [0, 0, 255], [255, 0, 0], [255, 255, 255]])
+    skeleton = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 6], [1, 2], [5, 6], [5, 7], [6, 7]]
+
+    # Update the skeleton list based on the number of keypoints
+    skeleton = [s for s in skeleton if s[0] < num_kpts and s[1] < num_kpts]
+
+    pose_limb_color = palette[:len(skeleton)]
+    pose_kpt_color = palette[:num_kpts]
+
+    radius = 5
+    num_kpts = len(kpts) // steps
+
+    if orig_shape is None:
+        orig_shape = im.shape[:2]
 
     for kid in range(num_kpts):
-        r, g, b = pose_kpt_color[kid]
+        r, g, b = pose_kpt_color[kid % len(pose_kpt_color)]
         x_coord, y_coord = kpts[steps * kid], kpts[steps * kid + 1]
-        if not (x_coord % 640 == 0 or y_coord % 640 == 0):
+        if not (x_coord % orig_shape[1] == 0 or y_coord % orig_shape[0] == 0):
             if steps == 3:
                 conf = kpts[steps * kid + 2]
-                if conf < min_conf:
-                    r, g, b = [255, 0, 0]
-                    #continue
+                if conf < 0.5:
+                    continue
             cv2.circle(im, (int(x_coord), int(y_coord)), radius, (int(r), int(g), int(b)), -1)
 
     for sk_id, sk in enumerate(skeleton):
-        r, g, b = pose_limb_color[sk_id]
+        r, g, b = pose_limb_color[sk_id % len(pose_limb_color)]
         pos1 = (int(kpts[(sk[0]-1)*steps]), int(kpts[(sk[0]-1)*steps+1]))
         pos2 = (int(kpts[(sk[1]-1)*steps]), int(kpts[(sk[1]-1)*steps+1]))
         if steps == 3:
             conf1 = kpts[(sk[0]-1)*steps+2]
             conf2 = kpts[(sk[1]-1)*steps+2]
-            if conf1<min_conf or conf2<min_conf:
+            if conf1<0.5 or conf2<0.5:
                 continue
-        if pos1[0]%640 == 0 or pos1[1]%640==0 or pos1[0]<0 or pos1[1]<0:
+        if pos1[0]%orig_shape[1] == 0 or pos1[1]%orig_shape[0] == 0 or pos1[0]<0 or pos1[1]<0:
             continue
-        if pos2[0] % 640 == 0 or pos2[1] % 640 == 0 or pos2[0]<0 or pos2[1]<0:
+        if pos2[0] % orig_shape[1] == 0 or pos2[1] % orig_shape[0] == 0 or pos2[0]<0 or pos2[1]<0:
             continue
         cv2.line(im, pos1, pos2, (int(r), int(g), int(b)), thickness=2)
+
+# def plot_skeleton_kpts(im, kpts, steps, orig_shape=None):
+#     num_kpts = len(kpts) // steps
+#     kpt_names = ['top', 'left_upper', 'right_upper', 'left_middle', 'right_middle', 'left_lower', 'right_lower', 'bottom']
+#     #Plot the skeleton and keypointsfor coco datatset
+#     palette = np.array([[255, 128, 0], [255, 153, 255], [102, 205, 102], [0, 0, 255]])
+
+#     # skeleton = [[16, 14], [14, 12], [17, 15], [15, 13], [12, 13], [6, 12],
+#     #             [7, 13], [6, 7], [6, 8], [7, 9], [8, 10], [9, 11], [2, 3],
+#     #             [1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 7]]
+
+#     skeleton = [[16, 14], [14, 12], [17, 15], [15, 13], [12, 13], [6, 12], [7, 13], [6, 7], [6, 8], [7, 9], [8, 10], [9, 11], [2, 3], [1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 7]]
+    
+#     # Update the skeleton list based on the number of keypoints
+#     skeleton = [s for s in skeleton if s[0] < num_kpts and s[1] < num_kpts]
+
+#     #pose_limb_color = palette[[9, 9, 9, 9, 7, 7, 7, 0, 0, 0, 0, 0, 16, 16, 16, 16, 16, 16, 16]]
+#     pose_limb_color = palette[:num_kpts].copy()
+#     # pose_limb_color = palette[[limb[0]-1 for limb in skeleton]]
+#     #pose_kpt_color = palette[[16, 16, 16, 16, 16, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9]]
+#     #pose_kpt_color = palette[[16, 0, 9, 1]]
+#     radius = 4
+#     min_conf = 0.2
+#     num_kpts = len(kpts) // steps
+#     # pose_kpt_color = palette[list(range(num_kpts))]
+#     pose_kpt_color = palette[:num_kpts]
+
+
+#     for kid in range(num_kpts):
+#         r, g, b = pose_kpt_color[kid]
+#         x_coord, y_coord = kpts[steps * kid], kpts[steps * kid + 1]
+#         if not (x_coord % 640 == 0 or y_coord % 640 == 0):
+#             if steps == 3:
+#                 conf = kpts[steps * kid + 2]
+#                 if conf < min_conf:
+#                     r, g, b = [255, 0, 0]
+#                     #continue
+#             cv2.circle(im, (int(x_coord), int(y_coord)), radius, (int(r), int(g), int(b)), -1)
+
+#     for sk_id, sk in enumerate(skeleton):
+#         r, g, b = pose_limb_color[sk_id]
+#         pos1 = (int(kpts[(sk[0]-1)*steps]), int(kpts[(sk[0]-1)*steps+1]))
+#         pos2 = (int(kpts[(sk[1]-1)*steps]), int(kpts[(sk[1]-1)*steps+1]))
+#         if steps == 3:
+#             conf1 = kpts[(sk[0]-1)*steps+2]
+#             conf2 = kpts[(sk[1]-1)*steps+2]
+#             if conf1<min_conf or conf2<min_conf:
+#                 continue
+#         if pos1[0]%640 == 0 or pos1[1]%640==0 or pos1[0]<0 or pos1[1]<0:
+#             continue
+#         if pos2[0] % 640 == 0 or pos2[1] % 640 == 0 or pos2[0]<0 or pos2[1]<0:
+#             continue
+#         cv2.line(im, pos1, pos2, (int(r), int(g), int(b)), thickness=2)
 
 
 def plot_one_box_PIL(box, im, color=None, label=None, line_thickness=None):
